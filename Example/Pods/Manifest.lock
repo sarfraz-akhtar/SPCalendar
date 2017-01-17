@@ -1,0 +1,16 @@
+PODS:
+  - SPCalendar (0.1.0)
+
+DEPENDENCIES:
+  - SPCalendar (from `../`)
+
+EXTERNAL SOURCES:
+  SPCalendar:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SPCalendar: 3c827178fc44cb2f2184475ede843a2697eeaa1e
+
+PODFILE CHECKSUM: 4e986914da22ae93268b2581653040ec78c19c33
+
+COCOAPODS: 1.1.1

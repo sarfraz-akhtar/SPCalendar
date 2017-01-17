@@ -1,0 +1,22 @@
+{
+  "name": "SPCalendar",
+  "version": "0.1.0",
+  "summary": "A short description of SPCalendar.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/SPCalendar",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "SPCalendar": "sarfraz.akhtar4@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/SPCalendar.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SPCalendar/Classes/**/*"
+}

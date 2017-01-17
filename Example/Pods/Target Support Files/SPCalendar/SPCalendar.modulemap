@@ -1,0 +1,6 @@
+framework module SPCalendar {
+  umbrella header "SPCalendar-umbrella.h"
+
+  export *
+  module * { export * }
+}
