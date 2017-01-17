@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SPCalendar_Example' do
+  pod 'SPCalendar', :path => '../'
+
+  target 'SPCalendar_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
