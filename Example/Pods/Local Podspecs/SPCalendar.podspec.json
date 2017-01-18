@@ -1,9 +1,9 @@
 {
   "name": "SPCalendar",
   "version": "0.1.0",
-  "summary": "A short description of SPCalendar.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/SPCalendar",
+  "summary": "SPCalendar is written in swift and provide functionality for schedulingPlus application.",
+  "description": "SPCalendar is written in swift. it will provide daily and weekly selection. ovverride default functionality using delegates.",
+  "homepage": "https://github.com/sarfraz-akhtar01/SPCalendar",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,7 +12,7 @@
     "SPCalendar": "sarfraz.akhtar4@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/SPCalendar.git",
+    "git": "https://github.com/sarfraz-akhtar01/SPCalendar.git",
     "tag": "0.1.0"
   },
   "platforms": {

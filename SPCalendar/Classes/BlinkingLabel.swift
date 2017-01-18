@@ -6,6 +6,4 @@
 //
 //
 
-public class BlinkingLabel : UILabel {
-    
-}
+

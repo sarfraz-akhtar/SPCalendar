@@ -15,6 +15,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		929145A5DC677EED06948D14 /* Pods_SPCalendar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07E6FAD0E8A94019E76F5BC /* Pods_SPCalendar_Example.framework */; };
+		D7FF8C7D1E2F683600AA6B92 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FF8C7C1E2F683500AA6B92 /* Calendar.storyboard */; };
+		D7FF8C7F1E2F687A00AA6B92 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF8C7E1E2F687A00AA6B92 /* CalendarViewController.swift */; };
+		D7FF8C811E2F6E8B00AA6B92 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF8C801E2F6E8B00AA6B92 /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		C1A37C217F013217E1E759E3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C587235228F2523DD5061B65 /* Pods-SPCalendar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPCalendar_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SPCalendar_Tests/Pods-SPCalendar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CED59981A5A5CB649C79B3E1 /* Pods-SPCalendar_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SPCalendar_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SPCalendar_Tests/Pods-SPCalendar_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		D7FF8C7C1E2F683500AA6B92 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		D7FF8C7E1E2F687A00AA6B92 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D7FF8C801E2F6E8B00AA6B92 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,9 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				D7FF8C7C1E2F683500AA6B92 /* Calendar.storyboard */,
+				D7FF8C7E1E2F687A00AA6B92 /* CalendarViewController.swift */,
+				D7FF8C801E2F6E8B00AA6B92 /* Date.swift */,
 			);
 			name = "Example for SPCalendar";
 			path = SPCalendar;
@@ -248,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7FF8C7D1E2F683600AA6B92 /* Calendar.storyboard in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -361,8 +371,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7FF8C7F1E2F687A00AA6B92 /* CalendarViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				D7FF8C811E2F6E8B00AA6B92 /* Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
