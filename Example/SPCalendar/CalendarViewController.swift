@@ -17,9 +17,9 @@ static let BRAND_COLOR = UIColor.colorFromCode(0x88b04b)
 class CalendarViewController: UIViewController {
     var parentController: UIViewController!
     var weekStartDay: Int = 1
-    var currentDate: Date = Date()
+    var currentDate: Date = Date.getDateFromString("2016-07-07")
     fileprivate var currentScrollDate: Date = Date()
-    var enableButtonflag: Bool = true // true for daybutton and false for week button
+    var rangeSelection: Bool = true // false for daybutton and true for week button
     var appstartedFlag: Bool = false
     struct Color {
         static let selectedText = UIColor.red
@@ -61,27 +61,27 @@ class CalendarViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        DispatchQueue.main.async(execute: {
+//        DispatchQueue.main.async(execute: {
             self.monthLabel.text = Date.getDateString(self.currentDate, dateFormat: "MMMM yyyy")
-            if self.enableButtonflag {
-                self.dayButton.isSelected = true
-                self.calendarView.toggleViewWithDate(self.currentDate)
-            }
-            else {
-                self.weekButton.isSelected = false
-                
-                self.weekButton.backgroundColor = SPConstants.BRAND_COLOR
-                self.weekButton.titleLabel?.textColor = UIColor.white
-                self.weekButton.isSelected = true
-                
-                self.dayButton.isSelected = false
-                self.dayButton.backgroundColor = UIColor.white
-                self.dayButton.titleLabel?.textColor = UIColor.black
-                
-                self.performedWeekSelection()
-                
-            }
-        })
+//            if self.enableButtonflag {
+//                self.dayButton.isSelected = true
+//                self.calendarView.toggleViewWithDate(self.currentDate)
+//            }
+//            else {
+//                self.weekButton.isSelected = false
+//                
+//                self.weekButton.backgroundColor = SPConstants.BRAND_COLOR
+//                self.weekButton.titleLabel?.textColor = UIColor.white
+//                self.weekButton.isSelected = true
+//                
+//                self.dayButton.isSelected = false
+//                self.dayButton.backgroundColor = UIColor.white
+//                self.dayButton.titleLabel?.textColor = UIColor.black
+//                
+//                self.performedWeekSelection()
+//                
+//            }
+//        })
         
         super.viewDidLoad()
         
@@ -105,7 +105,12 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
+    
     /// Required method to implement!
+    
+    func calendarSelectedDate() -> Date {
+        return self.currentDate
+    }
     func presentationMode() -> CalendarMode {
         return .monthView
     }
@@ -144,7 +149,8 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
-        self.currentDate = dayView.date.convertedDate(calendar: self.currentCalendar!)!
+
+ self.currentDate = dayView.date.convertedDate(calendar: self.currentCalendar!)!
         //        if dayView.monthView == self.calendarView.contentController.presentedMonthView{
         //        print("selecting on same month")
         //        }
@@ -167,7 +173,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
         //        self.selectedDay = dayView
         // send date to scheduleview controller to update data.
         
-        
+    
     }
     
     //    func shouldSelectDayView(_ dayView: DayView) -> Bool {
@@ -183,7 +189,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
     
     func shouldSelectRange() -> Bool {
-        return weekButton.isSelected
+        return rangeSelection
     }
     
     func didSelectRange(from startDayView: DayView, to endDayView: DayView) {
@@ -205,7 +211,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
     
     func shouldShowCustomSingleSelection() -> Bool {
-        return self.dayButton.isSelected
+        return rangeSelection
     }
     
     func dayOfWeekTextColor() -> UIColor {
@@ -246,24 +252,14 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     
     
     func didShowNextMonthView(_ date: Date) {
+        print(date.debugDescription)
         self.monthLabel.text = Date.getDateString(date, dateFormat: "MMMM yyyy")
-        //        if (self.dayButton.isSelected) && (Date.getDateString(self.currentDate, dateFormat: "yyyy-MM") == Date.getDateString(date, dateFormat: "yyyy-MM")) {
-        //            DispatchQueue.main.async(execute: {
-        //            self.calendarView.toggleViewWithDate(self.currentDate)
-        //            })
-        //
-        //        }
         
     }
     
     func didShowPreviousMonthView(_ date: Date) {
+        print(date.debugDescription)
         self.monthLabel.text = Date.getDateString(date, dateFormat: "MMMM yyyy")
-        
-        //        if (self.dayButton.isSelected) && (Date.getDateString(self.currentDate, dateFormat: "yyyy-MM") == Date.getDateString(date, dateFormat: "yyyy-MM")) {
-        //            DispatchQueue.main.async(execute: {
-        //                self.calendarView.toggleViewWithDate(self.currentDate)
-        //            })
-        //        }
     }
     
     

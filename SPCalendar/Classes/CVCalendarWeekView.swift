@@ -193,6 +193,8 @@ extension CVCalendarWeekView {
 
 extension CVCalendarWeekView {
     public func createDayViews() {
+        let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
+        let selectedDate: CVDate = CVDate(date: self.calendarView.selectedDate, calendar: calendar)
         dayViews = [CVCalendarDayView]()
         for i in 1...7 {
             let dayView = CVCalendarDayView(weekView: self, weekdayIndex: i)
@@ -201,6 +203,8 @@ extension CVCalendarWeekView {
                 self.dayViews!.append(dayView)
                 }, collapsingOnNil: true, withObjects: dayViews as AnyObject?)
 
+            
+            
             addSubview(dayView)
         }
     }

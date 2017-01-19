@@ -29,7 +29,7 @@ public final class CVCalendarManager {
     
     public init(calendarView: CalendarView) {
         self.calendarView = calendarView
-        currentDate = Foundation.Date()
+        currentDate = self.calendarView.selectedDate
         var calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
         components = (calendar as NSCalendar).components(monthUnit.union(dayUnit), from: currentDate)
         

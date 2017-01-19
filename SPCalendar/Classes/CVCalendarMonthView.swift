@@ -82,7 +82,7 @@ extension CVCalendarMonthView {
             self.numberOfWeeks = calendarManager?.monthDateRange(self.date).countOfWeeks
             self.weeksIn = calendarManager?.weeksWithWeekdaysForMonthDate(self.date).weeksIn
             self.weeksOut = calendarManager?.weeksWithWeekdaysForMonthDate(self.date).weeksOut
-            self.currentDay = Manager.dateRange(Foundation.Date(), calendar: calendar).day
+            self.currentDay = Manager.dateRange(calendarView.selectedDate, calendar: calendar).day
             }, collapsingOnNil: true, withObjects: date as AnyObject?)
     }
 }

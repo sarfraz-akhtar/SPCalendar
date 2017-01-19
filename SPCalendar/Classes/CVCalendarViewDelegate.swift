@@ -10,6 +10,7 @@ import UIKit
 
 @objc
 public protocol CVCalendarViewDelegate {
+    func calendarSelectedDate() -> Date
     func presentationMode() -> CalendarMode
     func firstWeekday() -> Weekday
 

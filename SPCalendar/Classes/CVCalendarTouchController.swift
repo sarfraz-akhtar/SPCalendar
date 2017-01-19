@@ -42,6 +42,8 @@ extension CVCalendarTouchController {
         
         if let dayView = ownerTouchLocation(location, onWeekView: weekView) ,
             dayView.isUserInteractionEnabled {
+            
+            
             receiveTouchOnDayView(dayView, withSelectionType: selectionType)
         }
     }
@@ -60,6 +62,7 @@ private extension CVCalendarTouchController {
             switch selectionType {
             case .single:
                 if calendarView.shouldSelectRange {
+                    
                     coordinator.performDayViewRangeSelection(dayView)
                 } else {
                     coordinator.performDayViewSingleSelection(dayView)

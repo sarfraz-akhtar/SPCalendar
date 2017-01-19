@@ -16,7 +16,7 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
         weekViews = [Identifier : WeekView]()
         monthViews = [Identifier : MonthView]()
         super.init(calendarView: calendarView, frame: frame)
-        initialLoad(Foundation.Date())
+        initialLoad(calendarView.selectedDate)
     }
 
     public init(calendarView: CalendarView, frame: CGRect, presentedDate: Foundation.Date) {
@@ -471,7 +471,7 @@ extension CVCalendarWeekContentViewController {
                 if let selected = coordinator?.selectedDayView ,
                     !matchedWeeks(selected.date, presentedDate) &&
                         calendarView.shouldAutoSelectDayOnWeekChange {
-                    let current = CVDate(date: Foundation.Date(), calendar: calendar)
+                    let current = CVDate(date: calendarView.selectedDate, calendar: calendar)
 
                             if matchedWeeks(current, presentedDate) {
                                 selectDayViewWithDay(current.day, inWeekView: presentedWeekView)

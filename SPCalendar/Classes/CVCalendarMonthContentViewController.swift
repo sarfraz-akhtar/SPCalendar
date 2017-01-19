@@ -32,22 +32,39 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
     // MARK: - Load & Reload
     
     public func initialLoad(_ date: Foundation.Date) {
+        
+        let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
+        let selectedDate: CVDate = CVDate(date: self.calendarView.selectedDate, calendar: calendar)
+        
+        presentedMonthView.mapDayViews { dayView in
+            if dayView.date.day == selectedDate.day{
+                if calendarView.shouldSelectRange {
+                    let currentWeek: CVCalendarWeekView = dayView.weekView
+                    let startDayView: CVCalendarDayView = currentWeek.dayViews.first!
+                    let endDayView: CVCalendarDayView = currentWeek.dayViews.last!
+                    DispatchQueue.main.async(execute: {
+                    
+                    self.calendarView.coordinator.performDayViewRangeSelection(startDayView)
+                    
+                    self.calendarView.coordinator.performDayViewRangeSelection(endDayView)
+                        })
+                        
+                } else {
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.calendarView.coordinator.performDayViewSingleSelection(dayView)
+                    })
+                    
+                }
+                //                break
+            }
+            
+        }
         insertMonthView(getPreviousMonth(date), withIdentifier: previous)
         insertMonthView(presentedMonthView, withIdentifier: presented)
         insertMonthView(getFollowingMonth(date), withIdentifier: following)
         
-        let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
-        
-        presentedMonthView.mapDayViews { dayView in
-            if self.calendarView.shouldAutoSelectDayOnMonthChange &&
-                self.matchedDays(dayView.date, CVDate(date: date, calendar: calendar)) {
-                self.calendarView.coordinator.flush()
-                self.calendarView.touchController.receiveTouchOnDayView(dayView)
-                dayView.selectionView?.removeFromSuperview()
-            }
-        }
-        
-        checkScrollToPreviousDisabled()
+//        checkScrollToPreviousDisabled()
         
         calendarView.presentedDate = CVDate(date: presentedMonthView.date, calendar: calendar)
     }
@@ -69,7 +86,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
         monthView.frame.origin = CGPoint(x: scrollView.bounds.width * index, y: 0)
         monthViews[identifier] = monthView
         scrollView.addSubview(monthView)
-        checkScrollToPreviousDisabled()
+//        checkScrollToPreviousDisabled()
 //        calendarView.coordinator?.disableDays(in: presentedMonthView)
     }
     
@@ -309,7 +326,7 @@ extension CVCalendarMonthContentViewController {
         
         components.month! += 1
         
-        let newDate = Calendar.current.date(from: components)!
+        let newDate = calendar.date(from: components)!
         let frame = scrollView.bounds
         let monthView = MonthView(calendarView: calendarView, date: newDate)
         
@@ -413,7 +430,7 @@ extension CVCalendarMonthContentViewController {
                 !matchedMonths(CVDate(date: selectedMonthView.date, calendar: calendar),
                                CVDate(date: presentedMonthView.date, calendar: calendar)) &&
                     calendarView.shouldAutoSelectDayOnMonthChange {
-                let current = CVDate(date: Date(), calendar: calendar)
+                let current = CVDate(date: self.calendarView.selectedDate, calendar: calendar)
                 let presented = CVDate(date: presentedMonthView.date, calendar: calendar)
                 
                 if matchedMonths(current, presented) {

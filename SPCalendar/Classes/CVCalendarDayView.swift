@@ -479,23 +479,22 @@ extension CVCalendarDayView {
         let appearance = calendarView.appearance
         var backgroundColor: UIColor!
         var backgroundAlpha: CGFloat!
-        var shape: CVShape!
+        var shape: CVShape = CVShape.circle
         
         let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
         let weekDay = self.date?.weekDay(calendar: calendar) ?? .monday // Monday is default
         let present: CVPresent = isCurrentDay ? .present : .not
-        
+       
         switch type {
         case .single:
-            shape = .circle
             
-            if let delegate = calendarView.delegate,
-                let shouldShowCustomSelection = delegate.shouldShowCustomSingleSelection?() ,
-                shouldShowCustomSelection {
-                if let block = delegate.selectionViewPath?() {
-                    shape = .custom(block)
-                }
-            }
+//            if let delegate = calendarView.delegate,
+//                let shouldShowCustomSelection = delegate.shouldShowCustomSingleSelection?() ,
+//                shouldShowCustomSelection {
+//                if let block = delegate.selectionViewPath?() {
+//                    shape = .custom(block)
+//                }
+//            }
             
             if isCurrentDay {
                 dayLabel?.textColor = appearance?.delegate?.dayLabelColor?(by: weekDay, status: .selected, present: present)
@@ -516,7 +515,7 @@ extension CVCalendarDayView {
             }
             
         case .range:
-            shape = .rect
+            
             if isCurrentDay {
                 dayLabel?.textColor = appearance?.delegate?.dayLabelColor?(by: weekDay, status: .highlighted, present: present)
                     ?? appearance?.dayLabelPresentWeekdayHighlightedTextColor!
@@ -549,6 +548,8 @@ extension CVCalendarDayView {
         
         moveDotMarkerBack(false, coloring: false)
         isHighlighted = true
+        
+        
     }
     
     public func setDeselectedWithClearing(_ clearing: Bool) {

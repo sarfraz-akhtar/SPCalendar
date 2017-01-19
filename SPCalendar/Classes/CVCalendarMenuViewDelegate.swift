@@ -11,6 +11,7 @@ import UIKit
 
 @objc
 public protocol CVCalendarMenuViewDelegate {
+    @objc optional func calendarSelectedDate() -> Date
     @objc optional func firstWeekday() -> Weekday
     @objc optional func dayOfWeekTextColor(by weekday: Weekday) -> UIColor
     @objc optional func dayOfWeekBackGroundColor(by weekday: Weekday) -> UIColor

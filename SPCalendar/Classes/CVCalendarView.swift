@@ -44,7 +44,16 @@ public final class CVCalendarView: UIView {
     fileprivate var validated = false
     fileprivate var currentOrientation: UIDeviceOrientation
     fileprivate var maxHeight: CGFloat = 0
-
+    public var selectedDate: Date {
+        get {
+            if let delegate = delegate, let currentDate: Date = delegate.calendarSelectedDate() {
+            return currentDate
+            }
+            else {
+            return Date()
+            }
+        }
+    }
     public var firstWeekday: Weekday {
         if let delegate = delegate {
             return delegate.firstWeekday()
@@ -357,13 +366,11 @@ extension CVCalendarView {
         switch mode {
         case .weekView:
             contentController.updateHeight(dayViewSize!.height, animated: true)
-            newController = WeekContentViewController(calendarView: self, frame: bounds,
-                                                      presentedDate: selectedDate)
+            newController = WeekContentViewController(calendarView: self, frame: bounds, presentedDate: selectedDate)
         case .monthView:
             contentController.updateHeight(
                 contentController.presentedMonthView.potentialSize.height, animated: true)
-            newController = MonthContentViewController(calendarView: self, frame: bounds,
-                                                       presentedDate: selectedDate)
+            newController = MonthContentViewController(calendarView: self, frame: bounds, presentedDate: selectedDate)
         }
 
         newController.updateFrames(bounds)
