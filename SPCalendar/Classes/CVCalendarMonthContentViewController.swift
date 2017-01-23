@@ -37,7 +37,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
         let selectedDate: CVDate = CVDate(date: self.calendarView.selectedDate, calendar: calendar)
         
         presentedMonthView.mapDayViews { dayView in
-            if dayView.date.day == selectedDate.day{
+            if dayView.date.day == selectedDate.day  && dayView.date.month == selectedDate.month{
                 if calendarView.shouldSelectRange {
                     let currentWeek: CVCalendarWeekView = dayView.weekView
                     let startDayView: CVCalendarDayView = currentWeek.dayViews.first!
