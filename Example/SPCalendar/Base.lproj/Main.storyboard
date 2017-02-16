@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCU-HV-GJn">
-                                <rect key="frame" x="164.5" y="90" width="46" height="30"/>
+                                <rect key="frame" x="164" y="90" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="calendarIconWasTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9ce-vH-Rx0"/>
