@@ -116,6 +116,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
                 
                 insertMonthView(getFollowingMonth(followingMonth.date),
                                 withIdentifier: following)
+//                self.presentedMonthView = 
                 self.calendarView.delegate?.didShowNextMonthView?(followingMonth.date)
             }
         }
@@ -313,6 +314,59 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
             }
         }
     }
+    
+    
+    
+    public override func toggleTodayMonth(_ date: Foundation.Date) {
+    let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
+    let presentedDate = CVDate(date: date, calendar: calendar)
+    guard let presentedMonth = monthViews[presented] else {
+    return
+    }
+        
+        var isMatchedMonths = false
+        
+        // selectedDayView would be nil if shouldAutoSelectDayOnMonthChange returns false
+        // we want to still allow the user to toggle to a date even if there is nothing selected
+        if let selectedDate = calendarView.coordinator.selectedDayView?.date {
+            isMatchedMonths = matchedMonths(presentedDate, selectedDate)
+        }
+        
+        
+        
+            if !togglingBlocked && !isMatchedMonths {
+                togglingBlocked = true
+                
+                monthViews[previous]?.removeFromSuperview()
+                monthViews[following]?.removeFromSuperview()
+                insertMonthView(getPreviousMonth(date), withIdentifier: previous)
+                insertMonthView(getFollowingMonth(date), withIdentifier: following)
+                
+                let currentMonthView = MonthView(calendarView: calendarView, date: date)
+                currentMonthView.updateAppearance(scrollView.bounds)
+                currentMonthView.alpha = 0
+                insertMonthView(currentMonthView, withIdentifier: presented)
+                presentedMonthView = currentMonthView
+                
+                calendarView.presentedDate = CVDate(date: date, calendar: calendar)
+                
+                UIView.animate(withDuration: toggleDateAnimationDuration, delay: 0,
+                               options: UIViewAnimationOptions(),
+                               animations: {
+                                presentedMonth.alpha = 0
+                                currentMonthView.alpha = 1
+                }) { [weak self] _ in
+                    presentedMonth.removeFromSuperview()
+                    
+                    self?.togglingBlocked = false
+                    self?.updateLayoutIfNeeded()
+                }
+                
+                
+                
+            }
+    }
+    
     
 }
 

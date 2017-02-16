@@ -129,6 +129,8 @@ extension CVCalendarContentViewController {
     public func performedDayViewSelection(_ dayView: DayView) { }
 
     public func togglePresentedDate(_ date: Foundation.Date) { }
+    
+    public func toggleTodayMonth(_ date: Foundation.Date) { }
 
     public func presentNextView(_ view: UIView?) { }
 

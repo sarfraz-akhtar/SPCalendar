@@ -11,6 +11,7 @@ import UIKit
 @objc
 public protocol CVCalendarViewDelegate {
     func calendarSelectedDate() -> Date
+    func didTouchDayView(_ dayView: DayView)
     func presentationMode() -> CalendarMode
     func firstWeekday() -> Weekday
 

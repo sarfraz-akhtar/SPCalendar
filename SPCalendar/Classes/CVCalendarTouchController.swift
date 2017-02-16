@@ -28,8 +28,9 @@ extension CVCalendarTouchController {
     public func receiveTouchLocation(_ location: CGPoint, inMonthView monthView: CVCalendarMonthView,
                                      withSelectionType selectionType: CVSelectionType) {
         // let weekViews = monthView.weekViews
-        if let dayView = ownerTouchLocation(location, onMonthView: monthView) ,
+        if var dayView = ownerTouchLocation(location, onMonthView: monthView) ,
             dayView.isUserInteractionEnabled {
+          
             receiveTouchOnDayView(dayView, withSelectionType: selectionType)
         }
     }
@@ -43,9 +44,12 @@ extension CVCalendarTouchController {
         if let dayView = ownerTouchLocation(location, onWeekView: weekView) ,
             dayView.isUserInteractionEnabled {
             
+           
             
             receiveTouchOnDayView(dayView, withSelectionType: selectionType)
-        }
+                
+            }
+        
     }
     
     public func receiveTouchOnDayView(_ dayView: CVCalendarDayView) {
@@ -61,13 +65,20 @@ private extension CVCalendarTouchController {
         if let calendarView = dayView.weekView.monthView.calendarView {
             switch selectionType {
             case .single:
+                //SPCalendar Code
                 if calendarView.shouldSelectRange {
-                    
-                    coordinator.performDayViewRangeSelection(dayView)
+                            let currentWeek: CVCalendarWeekView = dayView.weekView
+                            let startDayView: CVCalendarDayView = currentWeek.dayViews.first!
+                            let endDayView: CVCalendarDayView = currentWeek.dayViews.last!
+                            coordinator.performDayViewRangeSelection(startDayView)
+                            coordinator.performDayViewRangeSelection(endDayView)
+//                    coordinator.performDayViewRangeSelection(dayView)
                 } else {
+
                     coordinator.performDayViewSingleSelection(dayView)
+                    
                 }
-                calendarView.didSelectDayView(dayView)
+                calendarView.delegate?.didTouchDayView(dayView)
                 
             case .range(.started):
                 print("Received start of range selection.")
